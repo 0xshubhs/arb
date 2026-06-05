@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --canvas: #0b0e14;
+  --bound: #14e08a;
+  --breach: #ff5c5c;
+  --amber: #ffb020;
+}
+
+@layer base {
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    background-color: var(--canvas);
+    color: #e6e9ef;
+    font-feature-settings: "ss01", "cv01";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Every number renders in IBM Plex Mono with tabular figures. */
+  .num,
+  .tnum {
+    font-family: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: rgba(20, 224, 138, 0.25);
+  }
+
+  /* Slim terminal scrollbars. */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.16);
+  }
+}
+
+@layer components {
+  /* Frosted-glass card: subtle border + backdrop blur over the ink canvas. */
+  .card {
+    @apply rounded-card border border-hair bg-panel/60 backdrop-blur-glass shadow-glass;
+  }
+
+  .hairline {
+    @apply border-t border-hair;
+  }
+
+  .label {
+    @apply text-[11px] uppercase tracking-[0.18em] text-mute;
+  }
+
+  /* The whole document tints amber when the agent is revoked. */
+  .room-revoked {
+    background:
+      radial-gradient(1200px 700px at 50% -10%, rgba(255, 176, 32, 0.1), transparent 60%),
+      var(--canvas);
+  }
+
+  .room-default {
+    background:
+      radial-gradient(1100px 640px at 80% -12%, rgba(20, 224, 138, 0.05), transparent 60%),
+      var(--canvas);
+  }
+}
+
+/* Ambient grain + faint grid to read as a terminal, not a marketing page. */
+.grid-overlay {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
