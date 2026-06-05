@@ -8,7 +8,7 @@ Project-specific cheat sheet. Full guide: [`../USAGE.md`](../USAGE.md) · Design
 ```bash
 cd contracts
 forge install foundry-rs/forge-std OpenZeppelin/openzeppelin-contracts   # if lib/ is empty
-forge test -vvv          # 31 tests: scoring · integration reverts · reader fallback · reentrancy · fuzz parity
+forge test -vvv          # 33 tests: scoring · integration reverts · reader fallback · reentrancy · fuzz parity
 forge snapshot           # gas baseline for the Stylus-vs-Solidity benchmark
 ```
 

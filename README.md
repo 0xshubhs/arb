@@ -30,7 +30,7 @@ Foundry suites pass.
 |---|---|---|
 | Contracts | ✅ vault, AMM, oracle, factory, hello | ✅ registry, RiskEngine (Sol twin), guard, reader, hello |
 | Stylus (Rust) | — | ✅ kernel source mirroring the Solidity scorer |
-| Foundry tests | ✅ **25 passing** (unit + 11 adversarial reverts + fuzz + invariants) | ✅ **31 passing** (unit + integration reverts + reader fallback + reentrancy + fuzz parity) |
+| Foundry tests | ✅ **25 passing** (unit + 11 adversarial reverts + fuzz + invariants) | ✅ **33 passing** (unit + integration reverts + reader fallback + reentrancy + fuzz parity) |
 | Deploy scripts | ✅ `Deploy.s.sol` + `DeployHello.s.sol` (simulated OK) | ✅ `Deploy.s.sol` + `DeployHello.s.sol` (simulated OK) |
 | Agent(s) (TS) | ✅ loop/solver/rationale (typechecks) | ✅ 3 reference agents + driver + policy compiler (typechecks) |
 | Web (Next.js) | ✅ onboarding · Control Room · ledger (demo-mode runnable) | ✅ Mandate Compiler · Live Floor · Proof panel (demo-mode runnable) |

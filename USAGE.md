@@ -41,13 +41,13 @@ cd mandate/contracts
 forge install foundry-rs/forge-std OpenZeppelin/openzeppelin-contracts   # if lib/ is empty
 forge test -vvv
 
-# SENTINEL — 31 tests
+# SENTINEL — 33 tests
 cd ../../sentinel/contracts
 forge install foundry-rs/forge-std OpenZeppelin/openzeppelin-contracts   # if lib/ is empty
 forge test -vvv
 ```
 
-Expected: **25 passing** (Mandate) and **31 passing** (SENTINEL). Useful extras:
+Expected: **25 passing** (Mandate) and **33 passing** (SENTINEL). Useful extras:
 ```bash
 forge coverage        # branch coverage on the guardrails
 forge test --gas-report
@@ -156,7 +156,7 @@ After deploying, paste the addresses into the README address tables and the web/
 |---|---|---|
 | Contracts | ✅ vault, AMM, oracle, factory, hello | ✅ registry, RiskEngine (Sol twin), guard, reader, hello |
 | Stylus (Rust) | n/a | ✅ kernel **source** mirroring the Solidity scorer |
-| Foundry tests | ✅ **25 passing** | ✅ **31 passing** |
+| Foundry tests | ✅ **25 passing** | ✅ **33 passing** |
 | Deploy scripts | ✅ simulated end-to-end | ✅ simulated end-to-end |
 | Agent(s) (TS) | ✅ typechecks | ✅ typechecks |
 | Web (Next.js) | ✅ 3 pages, demo + live | ✅ 3 pages, demo + live |
