@@ -1,0 +1,22 @@
+{
+  "name": "mandate-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Mandate — autonomous rebalancing agent (holds only a scoped session key)",
+  "scripts": {
+    "start": "tsx src/agent.ts",
+    "once": "tsx src/agent.ts --once",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
+    "dotenv": "^16.4.5",
+    "viem": "^2.21.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
