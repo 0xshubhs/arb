@@ -3,6 +3,7 @@
 **/cache/
 **/broadcast/
 **/lib/
+**/foundry.lock
 # Node
 **/node_modules/
 **/.next/
