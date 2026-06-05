@@ -160,7 +160,12 @@ lib/  zerodev.ts  contracts.ts  useAgentEvents.ts
 - 3–4 transparent risk factors, frozen Day 3; spend the back half on the adversarial suite + a bulletproof 2-min demo.
 - Deploy a trivial Stylus contract Day 1 to de-risk the toolchain; Solidity-only scorer is the standing fallback.
 
-## 7. Open questions to resolve when building
-- Exact live ERC-8004 Reputation Registry address on Arbitrum Sepolia.
-- ZeroDev session-key validator API version + whether a custom validation module can gate on an external `checkSpend` call pre-settlement.
+## 7. Open questions — status
+- ✅ **Live ERC-8004 ReputationRegistry on Arbitrum Sepolia: `0x8004B663056A597Dffe9eCcC1965A193B7388713`**
+  (IdentityRegistry `0x8004A818BFB912233c491871b3d84c89A494BD9e`). `ERC8004Reader` now matches the
+  real `getSummary(agentId, clients, tag1, tag2) -> (count, int128 value, uint8 decimals)` shape and
+  normalizes the signed fixed-point result to 0–100. ERC-8004 has no on-chain address→agentId reverse
+  lookup, so the reader keeps an owner-set `agentIdOf[counterparty]` map; unknown counterparties fall
+  back to the neutral default + the policy's local denylist.
+- ZeroDev session-key validator API version + whether a custom validation module can gate on an external `checkSpend` call pre-settlement. *(AgentGuard models this self-contained; a ZeroDev kernel module is the production wiring.)*
 - Stylus ↔ Solidity cross-contract call cost (AgentGuard → RiskEngine) and how it affects the benchmark framing.

@@ -38,7 +38,7 @@ drawdown vs high-water mark, and ERC-8004 counterparty reputation. Reason codes 
 cd contracts
 forge install foundry-rs/forge-std OpenZeppelin/openzeppelin-contracts   # if lib/ is empty
 forge build
-forge test -vvv     # 31 tests: registry, pure scoring, integration reverts, reader fallback,
+forge test -vvv     # 33 tests: registry, pure scoring, integration reverts, reader fallback,
                     #           reentrancy, fuzz parity vs reference, monotonicity, gas benchmark
 forge snapshot      # gas baseline for the Stylus-vs-Solidity comparison
 ```
@@ -72,7 +72,8 @@ forge script script/Deploy.s.sol     --rpc-url $ARB_SEPOLIA_RPC --broadcast --ve
 | RiskEngine (Stylus) | `0x…` |
 | AgentGuard | `0x…` |
 | ERC8004Reader | `0x…` |
-| ERC-8004 Reputation Registry (live) | `0x…` |
+| ERC-8004 ReputationRegistry (live, Arb Sepolia) | `0x8004B663056A597Dffe9eCcC1965A193B7388713` |
+| ERC-8004 IdentityRegistry (live, Arb Sepolia) | `0x8004A818BFB912233c491871b3d84c89A494BD9e` |
 
 ## Agents & web
 - `agent/` — see [agent/README.md](./agent/README.md). `npm i && npm run driver` runs the parallel floor.

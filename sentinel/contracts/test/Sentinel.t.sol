@@ -38,11 +38,13 @@ abstract contract SentinelBase is Test {
         usdc = new MockERC20("USD Coin", "USDC", 6);
         registry = new PolicyRegistry();
         repRegistry = new MockReputationRegistry();
-        repRegistry.setScale(100);
-        repRegistry.setReputation(goodCp, 80);
-        repRegistry.setReputation(lowCp, 10);
+        // ERC-8004 indexes by agentId; map our demo counterparties and seed feedback summaries.
+        repRegistry.setSummary(1, 1, 80, 0); // agentId 1 => 80/100
+        repRegistry.setSummary(2, 1, 10, 0); // agentId 2 => 10/100
 
         reader = new ERC8004Reader(address(repRegistry));
+        reader.setAgentId(goodCp, 1);
+        reader.setAgentId(lowCp, 2);
         engine = new RiskEngine(address(registry), address(reader));
         guard = new AgentGuard(address(usdc), address(engine));
         engine.setGuard(address(guard), true);
@@ -342,6 +344,22 @@ contract ERC8004ReaderTest is SentinelBase {
         (uint16 rep, bool live) = reader.reputationOf(goodCp);
         assertEq(rep, 80);
         assertTrue(live);
+    }
+
+    function test_normalizesFixedPointDecimals() public {
+        address agent = makeAddr("repAgent");
+        repRegistry.setSummary(7, 4, 9977, 2); // 99.77 average
+        reader.setAgentId(agent, 7);
+        (uint16 rep, bool live) = reader.reputationOf(agent);
+        assertEq(rep, 99); // 9977 / 10^2 = 99.77 -> 99, clamped to <=100
+        assertTrue(live);
+    }
+
+    function test_unknownCounterpartyDefaults() public {
+        // No agentId mapped -> neutral default, not "live".
+        (uint16 rep, bool live) = reader.reputationOf(makeAddr("stranger"));
+        assertEq(rep, reader.defaultReputation());
+        assertFalse(live);
     }
 
     function test_gracefulFallbackWhenRegistryDown() public {
