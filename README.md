@@ -6,6 +6,7 @@ Two projects, one per *reserved* prize lane, to be built over ~10 days.
 | File | What it is |
 |---|---|
 | `STRATEGY.md` | Prize math, competitive analysis, win playbook. **Read first.** |
+| `USAGE.md` | How to run everything (tests, demo, agents, deploy) + what's remaining. |
 | `mandate/PLAN.md` | Mandate — strategic plan (architecture, judging map, demo script). |
 | `mandate/BUILD.md` | Mandate — execution handbook (contract specs, agent, UI, commands). |
 | `sentinel/PLAN.md` | SENTINEL — strategic plan. |
